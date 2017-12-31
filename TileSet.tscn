@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://BasicTile1.png" type="Texture" id=1]
+[ext_resource path="res://BasicTile2.png" type="Texture" id=2]
+[ext_resource path="res://BasicTile3.png" type="Texture" id=3]
+
+[node name="Node" type="Node"]
+
+[node name="Tile 1" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Tile 2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 27, 0 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Tile 3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 54, 0 )
+texture = ExtResource( 3 )
+centered = false
+
+

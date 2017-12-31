@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Tileset_2.xml" type="TileSet" id=1]
+[ext_resource path="res://TileSet.xml" type="TileSet" id=1]
 [ext_resource path="res://Game Logic/MouseMethod.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node"]
@@ -21,7 +21,7 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( -196604, 29, -196603, 29, -131068, 29, -131067, 29, -65532, 29, -65531, 29 )
+tile_data = IntArray( -131075, 2, -131074, 2, -131073, 2, -196608, 2, -196607, 2, -196606, 2, -196604, 29, -196603, 29, -65539, 2, -65538, 1, -65537, 1, -131072, 1, -131071, 1, -131070, 2, -131068, 29, -131067, 29, -3, 2, -2, 1, -1, 0, -65536, 0, -65535, 1, -65534, 2, -65532, 29, -65531, 29, 65533, 2, 65534, 1, 65535, 0, 0, 0, 1, 1, 2, 2, 131069, 2, 131070, 1, 131071, 1, 65536, 1, 65537, 1, 65538, 2, 196605, 2, 196606, 2, 196607, 2, 131072, 2, 131073, 2, 131074, 2 )
 script/script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
