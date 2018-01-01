@@ -4,6 +4,8 @@ extends CanvasItem
 # var a = 2
 # var b = "textvar"
 
+#onready var map = get_node("Selection map")
+
 var clickx #= Vector2()
 var clicky #= Vector2()
 var tilextype = 0
@@ -32,8 +34,13 @@ func _fixed_process(delta): #_ready():
 	
 #	tilextype = clicky<clickx[13/7]
 	
+	
+	#map.set_cell(tile.x, tile.y, 20)
+	
+	
 	if(clickx > 1*eqx):
 		tilextype = 1
+		#set_cell(1, 1, 2)
 		pass
 	else:
 		tilextype = 0
