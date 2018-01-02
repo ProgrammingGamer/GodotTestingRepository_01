@@ -4,8 +4,6 @@ extends CanvasItem
 # var a = 2
 # var b = "textvar"
 
-#onready var map = get_node("Selection map")
-
 onready var Precoor = get_node("Pre-coordinates")
 onready var Postcoor = get_node("Post-coordinates")
 
@@ -61,7 +59,9 @@ func _fixed_process(delta): #_ready():
 	tileytype = ((clicky/14) - 1.5)
 	
 #	tilextype =
-#	tileytype = 
+#	tileytype =
+	
+	#--------------ON AND OFF INPUT FOR DEBUG TOOLS--------------------------
 	
 	if ((Input.is_action_pressed("Debug Tools")) && debugtools == 0):
 		debugtools = 1
@@ -69,6 +69,13 @@ func _fixed_process(delta): #_ready():
 	elif ((Input.is_action_pressed("Debug Tools")) && debugtools == 1):
 		debugtools = 0
 		pass
+	
+	#------------------------------------------------------------------------
+	
+	#-----Printing Tile coordinates after dividing out the x and y lengths (eg 26 pixels for x axis, and 14 pixels for y axis)
+	#-----Through Debug Tools------------------------------------------------
+	#------------------------------------------------------------------------
+	
 	
 	if (debugtools == 1):
 		print("To TILE: ", tilextype, ", ", tileytype)
@@ -83,6 +90,11 @@ func _fixed_process(delta): #_ready():
 	tilextype = int(tilextype)
 	tileytype = int(tileytype)
 	
+	#------------------------------------------------------------------------
+	#------Mouse Coordinates plus--------------------------------------------
+	#------Tile coordinate printed through debug tools after being adjusted for isometric axis
+	#------------------------------------------------------------------------
+	
 	if (debugtools == 1):
 		print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
 		var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
@@ -93,6 +105,8 @@ func _fixed_process(delta): #_ready():
 		Postcoor.set_text(Postcoordinates)
 		pass
 	
+	
+	#-------Mouse Actions--------
 	
 	if (Input.is_action_pressed("Left_mouse")):
 		set_cell(tilextype, tileytype, 2)
