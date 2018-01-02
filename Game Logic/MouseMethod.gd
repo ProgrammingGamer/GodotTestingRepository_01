@@ -14,9 +14,11 @@ var tilextype = 0
 var tileytype = 0
 var oldtilextype = 0
 var oldtileytype = 0
+var tiletypeforplace = -2
 var eqy = 15
 var eqx = 27
 var debugtools = 0
+var buttonhover = 0
 
 func _ready():
 	
@@ -125,34 +127,114 @@ func _fixed_process(delta): #_ready():
 	
 	#-------Mouse Actions--------
 	
-	if (Input.is_action_pressed("Left_mouse")):
+	if (Input.is_action_pressed("Left_mouse") && buttonhover == 0):
 		SelMap.set_cell(oldtilextype, oldtileytype, -1)
 		SelMap.set_cell(tilextype, tileytype, 3)
 		oldtilextype = tilextype
 		oldtileytype = tileytype
 		pass
-	if (Input.is_action_pressed("Right_mouse")):
-		SelMap.set_cell(tilextype, tileytype, -1)
+	if (Input.is_action_pressed("Right_mouse") && buttonhover == 0):
+		SelMap.set_cell(oldtilextype, oldtileytype, -1)
 		pass
 	
 	pass
 
 
+
+
 func _on_Tile_1_pressed():
+#	if typeofsubject == 2:
+#		print("Rocks Have Been DeSelected")
+#		typeofsubject = 0
+#		rockpress.set_normal_texture(rockstexture)
+#	else:
+#		typeofsubject = 2
+#		print("Rocks Have Been Selected")
+#		setmainbuttontexture()
+#	
+#	
+#	if(tiletypeforplace == 0):
+#		print("Tile 1 Has Been DeSelected")
+#		tiletypeforplace = -2
+#	else:
+#		tiletypeforplace = 0
+#		print("Tile 1 Has Been Selected")
+	set_cell(oldtilextype, oldtileytype, 0)
 	
 	pass # replace with function body
 
 
 func _on_Tile_2_pressed():
+#	if(tiletypeforplace == 1):
+#		print("Tile 2 Has Been DeSelected")
+#		tiletypeforplace = -2
+#	else:
+#		tiletypeforplace = 1
+#		print("Tile 2 Has Been Selected")
+	set_cell(oldtilextype, oldtileytype, 1)
 	
 	pass # replace with function body
 
 
 func _on_Tile_3_pressed():
+#	if(tiletypeforplace == 2):
+#		print("Tile 3 Has Been DeSelected")
+#		tiletypeforplace = -2
+#	else:
+#		tiletypeforplace = 2
+#		print("Tile 3 Has Been Selected")
+	set_cell(oldtilextype, oldtileytype, 2)
 	
 	pass # replace with function body
 
 
 func _on_Tile_Remove_pressed():
+#	if(tiletypeforplace == -1):
+#		print("Tile 1 Has Been DeSelected")
+#		tiletypeforplace = -2
+#	else:
+#		tiletypeforplace = -1
+#		print("Tile 1 Has Been Selected")
+	set_cell(oldtilextype, oldtileytype, -1)
 	
+	pass # replace with function body
+
+
+func _on_Tile_1_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Tile_1_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_Tile_2_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Tile_2_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_Tile_3_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Tile_3_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_Tile_Remove_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Tile_Remove_mouse_exit():
+	buttonhover = 0
 	pass # replace with function body

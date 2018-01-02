@@ -216,11 +216,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[connection signal="mouse_enter" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_enter"]
+
+[connection signal="mouse_exit" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_exit"]
+
 [connection signal="pressed" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_pressed"]
+
+[connection signal="mouse_enter" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_enter"]
+
+[connection signal="mouse_exit" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_exit"]
 
 [connection signal="pressed" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_pressed"]
 
+[connection signal="mouse_enter" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_enter"]
+
+[connection signal="mouse_exit" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_exit"]
+
 [connection signal="pressed" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_pressed"]
+
+[connection signal="mouse_enter" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_enter"]
+
+[connection signal="mouse_exit" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_exit"]
 
 [connection signal="pressed" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_pressed"]
 
