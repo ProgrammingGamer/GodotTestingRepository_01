@@ -21,6 +21,7 @@ var eqx = 27
 var debugtools = 0
 var buttonhover = 0
 var Keytimer = 0
+var DebugTimer = 0
 
 func _ready():
 	
@@ -103,12 +104,12 @@ func _fixed_process(delta): #_ready():
 	#------------------------------------------------------------------------
 	
 	
-	if (debugtools == 1):
+	if (debugtools == 1 && DebugTimer == 0):
 		print("To TILE: ", tilextype, ", ", tileytype)
 		var Precoordinates = str("To TILE: ", tilextype, ", ", tileytype)
 		Precoor.set_text(Precoordinates)
 		pass
-	else:
+	elif(debugtools == 0):
 		var Precoordinates = str(" ")
 		Precoor.set_text(Precoordinates)
 		pass
@@ -121,12 +122,13 @@ func _fixed_process(delta): #_ready():
 	#------Tile coordinate printed through debug tools after being adjusted for isometric axis
 	#------------------------------------------------------------------------
 	
-	if (debugtools == 1):
+	if (debugtools == 1 && DebugTimer == 0):
 		print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
 		var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
 		Postcoor.set_text(Postcoordinates)
+		DebugTimer = 1
 		pass
-	else:
+	elif(debugtools == 0):
 		var Postcoordinates = str(" ")
 		Postcoor.set_text(Postcoordinates)
 		pass
@@ -249,4 +251,9 @@ func _on_Tile_Remove_mouse_exit():
 func _on_KeyTimer_timeout():
 	print("KeyTimer Timeout")
 	Keytimer = 0
+	pass # replace with function body
+
+
+func _on_DebugTimer_timeout():
+	DebugTimer = 0
 	pass # replace with function body

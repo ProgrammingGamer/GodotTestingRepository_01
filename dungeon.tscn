@@ -224,6 +224,13 @@ wait_time = 0.25
 one_shot = false
 autostart = false
 
+[node name="DebugTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = false
+autostart = true
+
 [connection signal="mouse_enter" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_enter"]
 
 [connection signal="mouse_exit" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_exit"]
@@ -249,5 +256,7 @@ autostart = false
 [connection signal="pressed" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_pressed"]
 
 [connection signal="timeout" from="KeyTimer" to="Selection map" method="_on_KeyTimer_timeout"]
+
+[connection signal="timeout" from="DebugTimer" to="Selection map" method="_on_DebugTimer_timeout"]
 
 
