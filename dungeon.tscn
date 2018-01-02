@@ -41,6 +41,9 @@ margin/bottom = -31.0
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Post-coordinates" type="Label" parent="Selection map"]
 
@@ -53,6 +56,30 @@ margin/left = -77.0
 margin/top = -41.0
 margin/right = 231.0
 margin/bottom = -27.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="controls" type="Label" parent="Selection map"]
+
+rect/scale = Vector2( 0.25, 0.25 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 40.0
+margin/top = -45.0
+margin/right = 188.0
+margin/bottom = 47.0
+text = "Press f5 to open debug
+tools
+Press Left mouse to 
+place
+Press Right mouse to 
+remove"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

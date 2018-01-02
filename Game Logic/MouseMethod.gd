@@ -15,6 +15,7 @@ var tilextype = 0
 var tileytype = 0
 var eqy = 15
 var eqx = 27
+var debugtools = 0
 
 func _ready():
 	
@@ -62,16 +63,35 @@ func _fixed_process(delta): #_ready():
 #	tilextype =
 #	tileytype = 
 	
-	print(tilextype, ", ", tileytype)
-	var Precoordinates = str(tilextype, ", ", tileytype)
-	Precoor.set_text(Precoordinates)
+	if ((Input.is_action_pressed("Debug Tools")) && debugtools == 0):
+		debugtools = 1
+		pass
+	elif ((Input.is_action_pressed("Debug Tools")) && debugtools == 1):
+		debugtools = 0
+		pass
+	
+	if (debugtools == 1):
+		print("To TILE: ", tilextype, ", ", tileytype)
+		var Precoordinates = str("To TILE: ", tilextype, ", ", tileytype)
+		Precoor.set_text(Precoordinates)
+		pass
+	else:
+		var Precoordinates = str(" ")
+		Precoor.set_text(Precoordinates)
+		pass
 	
 	tilextype = int(tilextype)
 	tileytype = int(tileytype)
 	
-	print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
-	var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
-	Postcoor.set_text(Postcoordinates)
+	if (debugtools == 1):
+		print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
+		var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
+		Postcoor.set_text(Postcoordinates)
+		pass
+	else:
+		var Postcoordinates = str(" ")
+		Postcoor.set_text(Postcoordinates)
+		pass
 	
 	
 	if (Input.is_action_pressed("Left_mouse")):
