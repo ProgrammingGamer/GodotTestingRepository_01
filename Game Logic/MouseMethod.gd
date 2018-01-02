@@ -55,8 +55,23 @@ func _fixed_process(delta): #_ready():
 #		pass
 	
 	
-	tilextype = clickx/26
-	tileytype = ((clicky/14) - 1.5)
+#	tilextype = clickx/26
+#	tileytype = ((clicky/14) - 1.5)
+	
+	tilextype = (clicky/14) + (clickx / 26)
+	tileytype = -((clickx / 26) - (clicky/14)) - 1
+	
+	if (tileytype > 0):
+		tileytype = tileytype + 1
+		pass
+	if (tilextype < 0):
+		tilextype = tilextype - 1
+		pass
+	
+	
+	#tileX = (yPos / tile_height) + (xPos / tile_width);
+	#tileY = (xPos / tile_width) - (yPos / tile_height);
+	
 	
 #	tilextype =
 #	tileytype =
