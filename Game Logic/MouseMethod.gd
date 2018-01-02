@@ -6,6 +6,9 @@ extends CanvasItem
 
 #onready var map = get_node("Selection map")
 
+onready var Precoor = get_node("Pre-coordinates")
+onready var Postcoor = get_node("Post-coordinates")
+
 var clickx #= Vector2()
 var clicky #= Vector2()
 var tilextype = 0
@@ -38,20 +41,44 @@ func _fixed_process(delta): #_ready():
 	#map.set_cell(tile.x, tile.y, 20)
 	
 	
-	if(clickx > 1*eqx):
-		tilextype = 1
-		#set_cell(1, 1, 2)
-		pass
-	else:
-		tilextype = 0
-		pass
-	if(clicky > 1*eqy):
-		tileytype = 1
-		pass
-	else:
-		tileytype = 0
-		pass
+#	if(clickx > 1*eqx):
+#		tilextype = 1
+#		#set_cell(1, 1, 2)
+#		pass
+#	else:
+#		tilextype = 0
+#		pass
+#	if(clicky > 1*eqy):
+#		tileytype = 1
+#		pass
+#	else:
+#		tileytype = 0
+#		pass
+	
+	
+	tilextype = clickx/26
+	tileytype = ((clicky/14) - 1.5)
+	
+#	tilextype =
+#	tileytype = 
+	
+	print(tilextype, ", ", tileytype)
+	var Precoordinates = str(tilextype, ", ", tileytype)
+	Precoor.set_text(Precoordinates)
+	
+	tilextype = int(tilextype)
+	tileytype = int(tileytype)
 	
 	print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
+	var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
+	Postcoor.set_text(Postcoordinates)
+	
+	
+	if (Input.is_action_pressed("Left_mouse")):
+		set_cell(tilextype, tileytype, 2)
+		pass
+	if (Input.is_action_pressed("Right_mouse")):
+		set_cell(tilextype, tileytype, 3)
+		pass
 	
 	pass
