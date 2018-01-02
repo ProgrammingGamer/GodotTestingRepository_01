@@ -63,6 +63,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="VISIBLE SELECTION" type="TileMap" parent="Selection map"]
+
+mode = 1
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 26, 14 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 1
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -196604, 29, -196603, 29, -131068, 29, -131067, 29, -65532, 29, -65531, 29 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="controls" type="Label" parent="Selection map"]
 
 rect/scale = Vector2( 0.25, 0.25 )
@@ -87,32 +108,74 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Tile_1" type="Button" parent="Selection map/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -280.0
+margin/top = 320.0
+margin/right = -233.0
+margin/bottom = 340.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 1"
+flat = false
+
+[node name="Tile_2" type="Button" parent="Selection map/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -224.0
+margin/top = 320.0
+margin/right = -177.0
+margin/bottom = 340.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 2"
+flat = false
+
+[node name="Tile_3" type="Button" parent="Selection map/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -168.0
+margin/top = 320.0
+margin/right = -121.0
+margin/bottom = 340.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 3"
+flat = false
+
+[node name="Tile_Remove" type="Button" parent="Selection map/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -112.0
+margin/top = 320.0
+margin/right = -21.0
+margin/bottom = 340.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile Remove"
+flat = false
+
 [node name="Selection map1" type="TileMap" parent="."]
 
 visibility/visible = false
 mode = 0
-tile_set = ExtResource( 1 )
-cell/size = Vector2( 26, 14 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 1
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( -131075, 2, -131074, 2, -131073, 2, -196608, 2, -196607, 2, -196606, 2, -196604, 29, -196603, 29, -65539, 2, -65538, 1, -65537, 1, -131072, 1, -131071, 1, -131070, 2, -131068, 29, -131067, 29, -3, 2, -2, 1, -1, 0, -65536, 0, -65535, 1, -65534, 2, -65532, 29, -65531, 29, 65533, 2, 65534, 1, 65535, 0, 0, 0, 1, 1, 2, 2, 131069, 2, 131070, 1, 131071, 1, 65536, 1, 65537, 1, 65538, 2, 196605, 2, 196606, 2, 196607, 2, 131072, 2, 131073, 2, 131074, 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="VISIBLE SELECTION" type="TileMap" parent="."]
-
-visibility/visible = false
-mode = 1
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 26, 14 )
 cell/quadrant_size = 16
@@ -152,5 +215,13 @@ drag_margin/bottom = 0.2
 __meta__ = {
 "_edit_lock_": true
 }
+
+[connection signal="pressed" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_pressed"]
+
+[connection signal="pressed" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_pressed"]
+
+[connection signal="pressed" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_pressed"]
+
+[connection signal="pressed" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_pressed"]
 
 

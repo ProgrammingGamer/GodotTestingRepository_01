@@ -6,11 +6,14 @@ extends CanvasItem
 
 onready var Precoor = get_node("Pre-coordinates")
 onready var Postcoor = get_node("Post-coordinates")
+onready var SelMap = get_node("VISIBLE SELECTION")
 
 var clickx #= Vector2()
 var clicky #= Vector2()
 var tilextype = 0
 var tileytype = 0
+var oldtilextype = 0
+var oldtileytype = 0
 var eqy = 15
 var eqx = 27
 var debugtools = 0
@@ -120,14 +123,36 @@ func _fixed_process(delta): #_ready():
 		Postcoor.set_text(Postcoordinates)
 		pass
 	
-	
 	#-------Mouse Actions--------
 	
 	if (Input.is_action_pressed("Left_mouse")):
-		set_cell(tilextype, tileytype, 2)
+		SelMap.set_cell(oldtilextype, oldtileytype, -1)
+		SelMap.set_cell(tilextype, tileytype, 3)
+		oldtilextype = tilextype
+		oldtileytype = tileytype
 		pass
 	if (Input.is_action_pressed("Right_mouse")):
-		set_cell(tilextype, tileytype, 3)
+		SelMap.set_cell(tilextype, tileytype, -1)
 		pass
 	
 	pass
+
+
+func _on_Tile_1_pressed():
+	
+	pass # replace with function body
+
+
+func _on_Tile_2_pressed():
+	
+	pass # replace with function body
+
+
+func _on_Tile_3_pressed():
+	
+	pass # replace with function body
+
+
+func _on_Tile_Remove_pressed():
+	
+	pass # replace with function body
