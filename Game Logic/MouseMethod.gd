@@ -7,6 +7,7 @@ extends CanvasItem
 onready var Precoor = get_node("Pre-coordinates")
 onready var Postcoor = get_node("Post-coordinates")
 onready var SelMap = get_node("VISIBLE SELECTION")
+onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 
 var clickx #= Vector2()
 var clicky #= Vector2()
@@ -19,6 +20,7 @@ var eqy = 15
 var eqx = 27
 var debugtools = 0
 var buttonhover = 0
+var Keytimer = 0
 
 func _ready():
 	
@@ -83,11 +85,15 @@ func _fixed_process(delta): #_ready():
 	
 	#--------------ON AND OFF INPUT FOR DEBUG TOOLS--------------------------
 	
-	if ((Input.is_action_pressed("Debug Tools")) && debugtools == 0):
+	if ((Input.is_action_pressed("Debug Tools")) && debugtools == 0 && Keytimer == 0):
 		debugtools = 1
+		Keytimer = 1
+		KEYTIMERNODE.start()
 		pass
-	elif ((Input.is_action_pressed("Debug Tools")) && debugtools == 1):
+	elif ((Input.is_action_pressed("Debug Tools")) && debugtools == 1 && Keytimer == 0):
 		debugtools = 0
+		Keytimer = 1
+		KEYTIMERNODE.start()
 		pass
 	
 	#------------------------------------------------------------------------
@@ -237,4 +243,10 @@ func _on_Tile_Remove_mouse_enter():
 
 func _on_Tile_Remove_mouse_exit():
 	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_KeyTimer_timeout():
+	print("KeyTimer Timeout")
+	Keytimer = 0
 	pass # replace with function body
