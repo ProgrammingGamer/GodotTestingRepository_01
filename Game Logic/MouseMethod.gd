@@ -22,6 +22,11 @@ var debugtools = 0
 var buttonhover = 0
 var Keytimer = 0
 var DebugTimer = 0
+var TileisSelected = 0
+var Save_X = 0
+var Save_Y = 0
+var TILE_ID_SAVE
+var SaveBlockIteration = 0
 
 func _ready():
 	
@@ -140,9 +145,11 @@ func _fixed_process(delta): #_ready():
 		SelMap.set_cell(tilextype, tileytype, 3)
 		oldtilextype = tilextype
 		oldtileytype = tileytype
+		TileisSelected = 1
 		pass
 	if (Input.is_action_pressed("Right_mouse") && buttonhover == 0):
 		SelMap.set_cell(oldtilextype, oldtileytype, -1)
+		TileisSelected = 0
 		pass
 	
 	pass
@@ -167,8 +174,10 @@ func _on_Tile_1_pressed():
 #	else:
 #		tiletypeforplace = 0
 #		print("Tile 1 Has Been Selected")
-	set_cell(oldtilextype, oldtileytype, 0)
-	
+	if(TileisSelected == 1):
+		set_cell(oldtilextype, oldtileytype, 0)
+		pass
+		
 	pass # replace with function body
 
 
@@ -179,7 +188,9 @@ func _on_Tile_2_pressed():
 #	else:
 #		tiletypeforplace = 1
 #		print("Tile 2 Has Been Selected")
-	set_cell(oldtilextype, oldtileytype, 1)
+	if(TileisSelected == 1):
+		set_cell(oldtilextype, oldtileytype, 1)
+		pass
 	
 	pass # replace with function body
 
@@ -191,7 +202,9 @@ func _on_Tile_3_pressed():
 #	else:
 #		tiletypeforplace = 2
 #		print("Tile 3 Has Been Selected")
-	set_cell(oldtilextype, oldtileytype, 2)
+	if(TileisSelected == 1):
+		set_cell(oldtilextype, oldtileytype, 2)
+		pass
 	
 	pass # replace with function body
 
@@ -203,7 +216,9 @@ func _on_Tile_Remove_pressed():
 #	else:
 #		tiletypeforplace = -1
 #		print("Tile 1 Has Been Selected")
-	set_cell(oldtilextype, oldtileytype, -1)
+	if(TileisSelected == 1):
+		set_cell(oldtilextype, oldtileytype, -1)
+		pass
 	
 	pass # replace with function body
 
@@ -247,6 +262,36 @@ func _on_Tile_Remove_mouse_exit():
 	buttonhover = 0
 	pass # replace with function body
 
+func _on_Save_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Save_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_Load_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Load_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
+func _on_Reset_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Reset_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
+
 
 func _on_KeyTimer_timeout():
 	print("KeyTimer Timeout")
@@ -257,3 +302,48 @@ func _on_KeyTimer_timeout():
 func _on_DebugTimer_timeout():
 	DebugTimer = 0
 	pass # replace with function body
+
+var X_Save_Distance = 0
+var Y_Save_Distance = 0
+
+func _on_Save_pressed():
+	
+#	Save_X = oldtilextype 
+#	Save_Y = oldtileytype 
+	
+	X_Save_Distance = X_Save_Distance - 8
+	Y_Save_Distance = Y_Save_Distance - 8
+	
+	#	while(X_Save_Distance <= (X_Save_Distance + 16) && Y_Save_Distance <= (Y_Save_Distance + 16)):
+	
+	while(SaveBlockIteration <= 144):
+		if(X_Save_Distance <= 8):
+			TILE_ID_SAVE = get_cell(X_Save_Distance, Y_Save_Distance)
+			print(X_Save_Distance, ", ", Y_Save_Distance, ", ", TILE_ID_SAVE)
+			Save_X = SaveBlockIteration
+			X_Save_Distance += 1
+			pass
+		if(X_Save_Distance == 9):
+			X_Save_Distance = 1
+			Y_Save_Distance += 1
+		
+		SaveBlockIteration += 1
+		pass
+	
+	TILE_ID_SAVE = get_cell(Save_X, Save_Y)
+	print(TILE_ID_SAVE)
+	
+	pass # replace with function body
+
+
+func _on_Load_pressed():
+	
+	
+	pass # replace with function body
+
+
+func _on_Load1_pressed():
+	pass # replace with function body
+
+
+
