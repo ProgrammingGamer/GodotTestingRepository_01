@@ -330,9 +330,6 @@ func _on_Save_pressed():
 		SaveBlockIteration += 1
 		pass
 	
-	TILE_ID_SAVE = get_cell(Save_X, Save_Y)
-	print(TILE_ID_SAVE)
-	
 	pass # replace with function body
 
 
