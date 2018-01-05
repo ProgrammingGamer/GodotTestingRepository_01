@@ -9,6 +9,11 @@ onready var Postcoor = get_node("Post-coordinates")
 onready var SelMap = get_node("VISIBLE SELECTION")
 onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 
+const SAVE_PATH = "res://save.json"
+
+var savedict = {}
+
+
 var clickx #= Vector2()
 var clicky #= Vector2()
 var tilextype = 0
@@ -26,7 +31,12 @@ var TileisSelected = 0
 var Save_X = 0
 var Save_Y = 0
 var TILE_ID_SAVE
-var SaveBlockIteration = 0
+var SaveBlockIteration = 1
+
+#Arrays
+var XSAVEARRAY = []
+var YSAVEARRAY = []
+var IDSAVEARRAY = []
 
 func _ready():
 	
@@ -314,27 +324,116 @@ func _on_Save_pressed():
 	X_Save_Distance = X_Save_Distance - 8
 	Y_Save_Distance = Y_Save_Distance - 8
 	
+	XSAVEARRAY = []
+	YSAVEARRAY = []
+	IDSAVEARRAY = []
+	
 	#	while(X_Save_Distance <= (X_Save_Distance + 16) && Y_Save_Distance <= (Y_Save_Distance + 16)):
 	
-	while(SaveBlockIteration <= 144):
+	while(SaveBlockIteration <= 145):
+		
+#		XSAVEARRAY[SaveBlockIteration] = Save_X
+#		YSAVEARRAY[SaveBlockIteration] = Save_Y
+#		IDSAVEARRAY[SaveBlockIteration] = TILE_ID_SAVE
+		
+		
+#		XSAVEARRAY[SaveBlockIteration] = X_Save_Distance #("array"[0], 1)
+		
+#		for x in range(SaveBlockIteration):
+#			XSAVEARRAY.append([])
+#			for y in range(1):
+#				XSAVEARRAY.append([])
+#		
+		
+#		var matrix = []
+#		for x in range(width):
+#			matrix.append([])
+#			matrix[x]=[]        
+#			for y in range(height):
+#				matrix[x].append([])
+#				matrix[x][y]=0
+		
+#		
+#		for x in range(SaveBlockIteration):
+#			YSAVEARRAY.append([])
+#			for y in range(1):
+#				YSAVEARRAY[SaveBlockIteration].append([])
+#		
+#		
+#		for x in range(SaveBlockIteration):
+#			IDSAVEARRAY.append([])
+#			for y in range(1):
+#				IDSAVEARRAY[SaveBlockIteration].append([])
+		
+		
+#		YSAVEARRAY.append([SaveBlockIteration]) = Save_Y
+#		IDSAVEARRAY.append([SaveBlockIteration]) = TILE_ID_SAVE
+		
+		
+		
+		
 		if(X_Save_Distance <= 8):
 			TILE_ID_SAVE = get_cell(X_Save_Distance, Y_Save_Distance)
 			print(X_Save_Distance, ", ", Y_Save_Distance, ", ", TILE_ID_SAVE)
-			Save_X = SaveBlockIteration
+			XSAVEARRAY.append([X_Save_Distance])
+			YSAVEARRAY.append([Y_Save_Distance])
+			IDSAVEARRAY.append([TILE_ID_SAVE])
 			X_Save_Distance += 1
 			pass
 		if(X_Save_Distance == 9):
 			X_Save_Distance = 1
 			Y_Save_Distance += 1
-		
 		SaveBlockIteration += 1
 		pass
+#		print(XSAVEARRAY)
+#		print(YSAVEARRAY)
+#		print(IDSAVEARRAY)
+	
+#	var savedict = {}
+#	var node_to_save = get_tree().get_nodes_in_group('persistent')
+#	for node in node_to_save:
+#		savedict[node.get_path()] = node.save()
+	
+	SaveFunction()
 	
 	pass # replace with function body
 
 
+
+func SaveFunction():
+	
+	savedict = {
+		Save_X = XSAVEARRAY,
+		Save_Y = YSAVEARRAY,
+		Save_Tile_ID = IDSAVEARRAY
+	}
+	
+	var save_file = File.new()
+	if save_file.open("res://saved_game.sav", File.WRITE) != 0:
+		print("Error opening file")
+		return
+	
+	save_file.store_line(savedict.to_json())
+	save_file.close()
+	
+	pass
+
 func _on_Load_pressed():
 	
+	# Check if there is a saved file
+	var save_file = File.new()
+	if not save_file.file_exists("res://saved_game.sav"):
+		print("No file saved!")
+		return
+	
+	# Open existing file
+	if save_file.open("res://saved_game.sav", File.READ) != 0:
+		print("Error opening file")
+		return
+	
+	# Get the data
+	var savedict = {}
+	savedict.parse_json(save_file.get_line())
 	
 	pass # replace with function body
 
@@ -344,3 +443,17 @@ func _on_Load1_pressed():
 
 
 
+#func Save_Variables():
+#	
+#	XSAVEARRAY = []
+#	
+#	while(saveiteration <= 144):
+#		
+#		saveiteration += 1
+#		
+#		XSAVEARRAY[saveiteration] = Save_X
+#		
+#		pass
+#	
+#	return XSAVEARRAY
+#	
