@@ -8,6 +8,8 @@ onready var Precoor = get_node("Pre-coordinates")
 onready var Postcoor = get_node("Post-coordinates")
 onready var SelMap = get_node("VISIBLE SELECTION")
 onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
+onready var DISPLAYMap = get_node("/root/Node2D/Selection map")
+
 
 const SAVE_PATH = "res://save.json"
 
@@ -32,6 +34,7 @@ var Save_X = 0
 var Save_Y = 0
 var TILE_ID_SAVE
 var SaveBlockIteration = 1
+var Save_Tile_ID = 1
 
 #Arrays
 var XSAVEARRAY = []
@@ -328,48 +331,7 @@ func _on_Save_pressed():
 	YSAVEARRAY = []
 	IDSAVEARRAY = []
 	
-	#	while(X_Save_Distance <= (X_Save_Distance + 16) && Y_Save_Distance <= (Y_Save_Distance + 16)):
-	
-	while(SaveBlockIteration <= 145):
-		
-#		XSAVEARRAY[SaveBlockIteration] = Save_X
-#		YSAVEARRAY[SaveBlockIteration] = Save_Y
-#		IDSAVEARRAY[SaveBlockIteration] = TILE_ID_SAVE
-		
-		
-#		XSAVEARRAY[SaveBlockIteration] = X_Save_Distance #("array"[0], 1)
-		
-#		for x in range(SaveBlockIteration):
-#			XSAVEARRAY.append([])
-#			for y in range(1):
-#				XSAVEARRAY.append([])
-#		
-		
-#		var matrix = []
-#		for x in range(width):
-#			matrix.append([])
-#			matrix[x]=[]        
-#			for y in range(height):
-#				matrix[x].append([])
-#				matrix[x][y]=0
-		
-#		
-#		for x in range(SaveBlockIteration):
-#			YSAVEARRAY.append([])
-#			for y in range(1):
-#				YSAVEARRAY[SaveBlockIteration].append([])
-#		
-#		
-#		for x in range(SaveBlockIteration):
-#			IDSAVEARRAY.append([])
-#			for y in range(1):
-#				IDSAVEARRAY[SaveBlockIteration].append([])
-		
-		
-#		YSAVEARRAY.append([SaveBlockIteration]) = Save_Y
-#		IDSAVEARRAY.append([SaveBlockIteration]) = TILE_ID_SAVE
-		
-		
+	while(SaveBlockIteration <= 289):
 		
 		
 		if(X_Save_Distance <= 8):
@@ -381,18 +343,10 @@ func _on_Save_pressed():
 			X_Save_Distance += 1
 			pass
 		if(X_Save_Distance == 9):
-			X_Save_Distance = 1
+			X_Save_Distance = -8
 			Y_Save_Distance += 1
 		SaveBlockIteration += 1
 		pass
-#		print(XSAVEARRAY)
-#		print(YSAVEARRAY)
-#		print(IDSAVEARRAY)
-	
-#	var savedict = {}
-#	var node_to_save = get_tree().get_nodes_in_group('persistent')
-#	for node in node_to_save:
-#		savedict[node.get_path()] = node.save()
 	
 	SaveFunction()
 	
@@ -418,6 +372,8 @@ func SaveFunction():
 	
 	pass
 
+var LoadBlockIteration = 0
+
 func _on_Load_pressed():
 	
 	# Check if there is a saved file
@@ -435,25 +391,73 @@ func _on_Load_pressed():
 	var savedict = {}
 	savedict.parse_json(save_file.get_line())
 	
+#	print(savedict)
+	
+#	TILE_ID_SAVE = get_cell(X_Save_Distance, Y_Save_Distance)
+#		Save_X = XSAVEARRAY,
+#		Save_Y = YSAVEARRAY,
+#		Save_Tile_ID = IDSAVEARRAY
+	
+	var Load_X #= XSAVEARRAY.find([1]) #XSAVEARRAY.append([X_Save_Distance])
+	var Load_Y #= YSAVEARRAY.find([1])
+	var Load_ID #= IDSAVEARRAY.find([1])
+	
+	LoadBlockIteration = 0
+	
+	while(LoadBlockIteration <= 288):
+		
+#		Load_X = savedict.Save_X[LoadBlockIteration]
+#		Load_Y = savedict.Save_Y[LoadBlockIteration]
+#		Load_ID = savedict.Save_Tile_ID[LoadBlockIteration]
+		
+		Load_X = str(savedict.Save_X[LoadBlockIteration])
+		Load_Y = str(savedict.Save_Y[LoadBlockIteration])
+		Load_ID = str(savedict.Save_Tile_ID[LoadBlockIteration])
+		
+		
+		Load_X = int(Load_X)
+		Load_Y = int(Load_Y)
+		Load_ID = int(Load_ID)
+		
+		print("Loading Values|X-Value: ", Load_X, ", Y-Value: ", Load_Y, ", ID-Value: ", Load_ID)
+		
+		set_cell(Load_X, Load_Y, Load_ID)
+		
+		LoadBlockIteration += 1
+		
+		pass
+	
+	LoadBlockIteration = 1
+	
 	pass # replace with function body
+
+
+
+
+
+
 
 
 func _on_Load1_pressed():
+	
+	SaveBlockIteration = 1
+	X_Save_Distance = -8
+	Y_Save_Distance = -8
+	
+	
+	while(SaveBlockIteration <= 289):
+		
+		
+		if(X_Save_Distance <= 8):
+			set_cell(X_Save_Distance, Y_Save_Distance, -1)
+			X_Save_Distance += 1
+			pass
+		if(X_Save_Distance == 9):
+			X_Save_Distance = -8
+			Y_Save_Distance += 1
+		SaveBlockIteration += 1
+		pass
+	
+	
 	pass # replace with function body
 
-
-
-#func Save_Variables():
-#	
-#	XSAVEARRAY = []
-#	
-#	while(saveiteration <= 144):
-#		
-#		saveiteration += 1
-#		
-#		XSAVEARRAY[saveiteration] = Save_X
-#		
-#		pass
-#	
-#	return XSAVEARRAY
-#	
