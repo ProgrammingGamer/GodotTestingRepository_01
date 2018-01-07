@@ -548,6 +548,10 @@ func _on_Save_pressed():
 		SaveBlockIteration += 1
 		pass
 	
+	X_Save_Distance = 0
+	Y_Save_Distance = 0
+	SaveBlockIteration = 1
+	
 	SaveFunction()
 	
 	pass # replace with function body
@@ -588,7 +592,7 @@ func _on_Load_pressed():
 		return
 	
 	# Get the data
-	var savedict = {}
+#	var savedict = {}
 	savedict.parse_json(save_file.get_line())
 	
 #	print(savedict)
