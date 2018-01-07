@@ -4,8 +4,8 @@ extends CanvasItem
 # var a = 2
 # var b = "textvar"
 
-onready var Precoor = get_node("Pre-coordinates")
-onready var Postcoor = get_node("Post-coordinates")
+onready var Precoor = get_node("/root/Node2D/Camera2D/CanvasLayer/Pre-coordinates")
+onready var Postcoor = get_node("/root/Node2D/Camera2D/CanvasLayer/Post-coordinates")
 onready var SelMap = get_node("VISIBLE SELECTION")
 onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 onready var DISPLAYMap = get_node("/root/Node2D/Selection map")
@@ -232,7 +232,7 @@ func _fixed_process(delta): #_ready():
 				CameraPos = CameraPosOld + (mouse_finalposition/1.5)
 				pass
 			
-			Camera_movement_Timer = 0
+#			Camera_movement_Timer = 0
 			
 #			CAMERA2D.set_offset(CameraPos)
 			
@@ -628,8 +628,6 @@ func _on_Move_pressed():
 	elif (MOVEBUTTON == 1):
 		MOVEBUTTON = 0
 		SelMap.set_cell(oldtilextype, oldtileytype, -1)
-	
-	
 	
 	pass # replace with function body
 
