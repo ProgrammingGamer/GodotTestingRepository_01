@@ -9,6 +9,10 @@ onready var Postcoor = get_node("Post-coordinates")
 onready var SelMap = get_node("VISIBLE SELECTION")
 onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 onready var DISPLAYMap = get_node("/root/Node2D/Selection map")
+onready var CAMERATIMER = get_node("/root/Node2D/CameraSelectionTimer")
+onready var CAMERA2D = get_node("/root/Node2D/Camera2D")
+onready var HUDn = get_node("/root/Node2D/Camera2D/controls")
+
 
 
 const SAVE_PATH = "res://save.json"
@@ -35,6 +39,15 @@ var Save_Y = 0
 var TILE_ID_SAVE
 var SaveBlockIteration = 1
 var Save_Tile_ID = 1
+var Camera_Selection_Timer = 0
+var startingcamposx
+var startingcamposy
+var move_up = Vector2()
+var move_right = Vector2()
+var move_down = Vector2()
+var move_left = Vector2()
+var CameraPos = Vector2(0,0)
+var CameraMovementSpeed = 2.5
 
 #Arrays
 var XSAVEARRAY = []
@@ -51,6 +64,8 @@ func _fixed_process(delta): #_ready():
 	clickx = get_local_mouse_pos().x
 	clicky = get_local_mouse_pos().y
 	
+	CAMERA2D.set_offset(CameraPos)
+#	HUDn.set_offset(HUDn.get_offset() + CameraPos)
 	#tile is (0,-1)
 	
 	#y<(13/7)x
@@ -154,20 +169,131 @@ func _fixed_process(delta): #_ready():
 	#-------Mouse Actions--------
 	
 	if (Input.is_action_pressed("Left_mouse") && buttonhover == 0):
-		SelMap.set_cell(oldtilextype, oldtileytype, -1)
-		SelMap.set_cell(tilextype, tileytype, 3)
-		oldtilextype = tilextype
-		oldtileytype = tileytype
-		TileisSelected = 1
+#		CAMERATIMER.start()
+#		if (Camera_Selection_Timer == 1):
+#			var ifcamloop = 1
+#			
+#			var clickcamx = get_global_mouse_pos().x
+#			var clickcamy = get_global_mouse_pos().y
+#			
+#			var startingcamposx = clickcamx
+#			var startingcamposy = clickcamy
+#			
+#			while(Camera_Selection_Timer == 1 && Input.is_action_pressed("Left_mouse") == true):
+#				
+#				
+#				var CAMPOSX = CAMERA2D.get_camera_pos().x
+#				var CAMPOSY = CAMERA2D.get_camera_pos().y
+#				
+#				clickcamx = get_global_mouse_pos().x
+#				clickcamy = get_global_mouse_pos().y
+#				
+#				if(ifcamloop < 1):
+#					
+#					startingcamposx = clickcamx
+#					startingcamposy = clickcamy
+#				
+#				var finalposcamx = startingcamposx - clickcamx
+#				var finalposcamy = startingcamposy - clickcamy
+#				
+#				var finalposcam = Vector2(finalposcamx, finalposcamy)
+#				
+#				CAMERA2D.set_offset(finalposcam)
+#				
+#				
+#				
+#				pass
+#			pass
+		if(Camera_Selection_Timer == 0):
+			SelMap.set_cell(oldtilextype, oldtileytype, -1)
+			SelMap.set_cell(tilextype, tileytype, 3)
+			oldtilextype = tilextype
+			oldtileytype = tileytype
+			TileisSelected = 1
 		pass
 	if (Input.is_action_pressed("Right_mouse") && buttonhover == 0):
 		SelMap.set_cell(oldtilextype, oldtileytype, -1)
 		TileisSelected = 0
 		pass
+	if (Input.is_action_pressed("move_up")):
+		
+		move_up = CameraPos + Vector2(0, -CameraMovementSpeed)
+		
+		CameraPos = move_up
+		
+#		CAMERA2D.set_offset(move_up)
+		
+		print(CAMERA2D.get_offset())
+		
+		
+		pass
+	if (Input.is_action_pressed("move_left")):
+		
+		
+		move_left = CameraPos + Vector2(-CameraMovementSpeed, 0)
+		
+		CameraPos = move_left
+		
+#		CAMERA2D.set_offset(move_left)
+		
+		print(CAMERA2D.get_offset())
+		
+		pass
+	if (Input.is_action_pressed("move_right")):
+		
+		move_right = CameraPos + Vector2(CameraMovementSpeed, 0)
+		
+		CameraPos = move_right
+		
+#		CAMERA2D.set_offset(move_right)
+		
+		print(CAMERA2D.get_offset())
+		
+		pass
+	if (Input.is_action_pressed("move_bottom")):
+		
+		move_down = CameraPos + Vector2(0, CameraMovementSpeed)
+		
+		CameraPos = move_down
+		
+#		CAMERA2D.set_offset(move_down)
+		
+		print(CAMERA2D.get_offset())
+		
+		
+		pass
+	if (Input.is_action_pressed("Zoomin") && Keytimer == 0):
+		
+		Keytimer = 1
+		KEYTIMERNODE.start()
+		
+		var zoomin = Vector2(0.15, 0.15)
+		
+		CAMERA2D.set_zoom(CAMERA2D.get_zoom() + zoomin)
+		
+		print (CAMERA2D.get_zoom())
+		
+		pass
+	if (Input.is_action_pressed("Zoomout") && Keytimer == 0):
+		
+		Keytimer = 1
+		KEYTIMERNODE.start()
+		
+		var zoomout = Vector2(-0.15, -0.15)
+		
+		CAMERA2D.set_zoom(CAMERA2D.get_zoom() + zoomout)
+		
+		print (CAMERA2D.get_zoom())
+		
+		pass
 	
 	pass
 
 
+func _on_CameraSelectionTimer_timeout():
+	Camera_Selection_Timer = 1
+	CAMERATIMER.stop()
+	pass # replace with function body
 
 
 func _on_Tile_1_pressed():
@@ -460,4 +586,7 @@ func _on_Load1_pressed():
 	
 	
 	pass # replace with function body
+
+
+
 

@@ -7,6 +7,7 @@
 
 [node name="Selection map" type="TileMap" parent="."]
 
+editor/display_folded = true
 mode = 1
 tile_set = ExtResource( 1 )
 cell/size = Vector2( 26, 14 )
@@ -84,161 +85,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="controls" type="Label" parent="Selection map"]
-
-editor/display_folded = true
-rect/scale = Vector2( 0.625, 0.625 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 87.0
-margin/top = -110.0
-margin/right = 235.0
-margin/bottom = -11.0
-text = "Press f5 to open debug
-tools
-Press Left mouse to 
-place
-Press Right mouse to 
-remove"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Tile_1" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -280.0
-margin/top = 320.0
-margin/right = -233.0
-margin/bottom = 340.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Tile 1"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Tile_2" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -224.0
-margin/top = 320.0
-margin/right = -177.0
-margin/bottom = 340.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Tile 2"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Tile_3" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -168.0
-margin/top = 320.0
-margin/right = -121.0
-margin/bottom = 340.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Tile 3"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Tile_Remove" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -112.0
-margin/top = 320.0
-margin/right = -21.0
-margin/bottom = 340.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Tile Remove"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Save" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 25.0
-margin/top = 266.0
-margin/right = 116.0
-margin/bottom = 286.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Save"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Load" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 25.0
-margin/top = 292.0
-margin/right = 116.0
-margin/bottom = 312.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Load"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Reset" type="Button" parent="Selection map/controls"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 26.0
-margin/top = 318.0
-margin/right = 117.0
-margin/bottom = 338.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Reset"
-flat = false
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 anchor_mode = 1
@@ -261,6 +107,171 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+layer = 1
+offset = Vector2( 621, 200 )
+rotation = 0.0
+scale = Vector2( 1.45, 1.45 )
+
+[node name="controls" type="Label" parent="Camera2D/CanvasLayer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 126.0
+margin/top = -128.0
+margin/right = 274.0
+margin/bottom = 5.0
+text = "Press f5 to open debug
+tools
+Press Left mouse to 
+place
+Press Right mouse to 
+remove
+Press - for zoomout
+Press + for zoomin"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tile_1" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -365.0
+margin/top = 350.0
+margin/right = -318.0
+margin/bottom = 370.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 1"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tile_2" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -309.0
+margin/top = 350.0
+margin/right = -262.0
+margin/bottom = 370.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 2"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tile_3" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -253.0
+margin/top = 350.0
+margin/right = -206.0
+margin/bottom = 370.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile 3"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tile_Remove" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -197.0
+margin/top = 350.0
+margin/right = -106.0
+margin/bottom = 370.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Tile Remove"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Save" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -60.0
+margin/top = 296.0
+margin/right = 31.0
+margin/bottom = 316.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Load" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -60.0
+margin/top = 322.0
+margin/right = 31.0
+margin/bottom = 342.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Load"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Reset" type="Button" parent="Camera2D/CanvasLayer/controls"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -59.0
+margin/top = 348.0
+margin/right = 32.0
+margin/bottom = 368.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Reset"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="KeyTimer" type="Timer" parent="."]
 
 process_mode = 1
@@ -275,50 +286,59 @@ wait_time = 0.05
 one_shot = false
 autostart = true
 
-[connection signal="mouse_enter" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_enter"]
+[node name="CameraSelectionTimer" type="Timer" parent="."]
 
-[connection signal="mouse_exit" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_exit"]
+process_mode = 1
+wait_time = 0.2
+one_shot = false
+autostart = false
 
-[connection signal="pressed" from="Selection map/controls/Tile_1" to="Selection map" method="_on_Tile_1_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Tile_1" to="Selection map" method="_on_Tile_1_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Tile_1" to="Selection map" method="_on_Tile_1_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Tile_2" to="Selection map" method="_on_Tile_2_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Tile_2" to="Selection map" method="_on_Tile_2_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Tile_2" to="Selection map" method="_on_Tile_2_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Tile_3" to="Selection map" method="_on_Tile_3_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Tile_3" to="Selection map" method="_on_Tile_3_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Tile_3" to="Selection map" method="_on_Tile_3_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Save" to="Selection map" method="_on_Save_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Save" to="Selection map" method="_on_Save_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Tile_Remove" to="Selection map" method="_on_Tile_Remove_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Save" to="Selection map" method="_on_Save_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Save" to="Selection map" method="_on_Save_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Load" to="Selection map" method="_on_Load_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Save" to="Selection map" method="_on_Save_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Load" to="Selection map" method="_on_Load_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Save" to="Selection map" method="_on_Save_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Load" to="Selection map" method="_on_Load_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Load" to="Selection map" method="_on_Load_mouse_enter"]
 
-[connection signal="mouse_enter" from="Selection map/controls/Reset" to="Selection map" method="_on_Reset_mouse_enter"]
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Load" to="Selection map" method="_on_Load_mouse_exit"]
 
-[connection signal="mouse_exit" from="Selection map/controls/Reset" to="Selection map" method="_on_Reset_mouse_exit"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Load" to="Selection map" method="_on_Load_pressed"]
 
-[connection signal="pressed" from="Selection map/controls/Reset" to="Selection map" method="_on_Load1_pressed"]
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Reset" to="Selection map" method="_on_Reset_mouse_enter"]
+
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Reset" to="Selection map" method="_on_Reset_mouse_exit"]
+
+[connection signal="pressed" from="Camera2D/CanvasLayer/controls/Reset" to="Selection map" method="_on_Load1_pressed"]
 
 [connection signal="timeout" from="KeyTimer" to="Selection map" method="_on_KeyTimer_timeout"]
 
 [connection signal="timeout" from="DebugTimer" to="Selection map" method="_on_DebugTimer_timeout"]
+
+[connection signal="timeout" from="CameraSelectionTimer" to="Selection map" method="_on_CameraSelectionTimer_timeout"]
 
 
