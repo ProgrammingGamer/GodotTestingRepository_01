@@ -11,7 +11,6 @@ onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 onready var DISPLAYMap = get_node("/root/Node2D/Selection map")
 onready var CAMERATIMER = get_node("/root/Node2D/CameraSelectionTimer")
 onready var CAMERA2D = get_node("/root/Node2D/Camera2D")
-onready var HUDn = get_node("/root/Node2D/Camera2D/controls")
 
 
 
@@ -65,7 +64,6 @@ func _fixed_process(delta): #_ready():
 	clicky = get_local_mouse_pos().y
 	
 	CAMERA2D.set_offset(CameraPos)
-#	HUDn.set_offset(HUDn.get_offset() + CameraPos)
 	#tile is (0,-1)
 	
 	#y<(13/7)x
