@@ -47,6 +47,13 @@ var move_down = Vector2()
 var move_left = Vector2()
 var CameraPos = Vector2(0,0)
 var CameraMovementSpeed = 2.5
+var MOVEBUTTON = 0
+var mouse_startingposition
+var mouse_finalposition
+var mouse_start
+var Camera_movement_Timer = 0
+var CameraPosOld = CameraPos
+
 
 #Arrays
 var XSAVEARRAY = []
@@ -202,13 +209,40 @@ func _fixed_process(delta): #_ready():
 #				
 #				pass
 #			pass
-		if(Camera_Selection_Timer == 0):
+		if(Camera_Selection_Timer == 0 && MOVEBUTTON == 0):
 			SelMap.set_cell(oldtilextype, oldtileytype, -1)
 			SelMap.set_cell(tilextype, tileytype, 3)
 			oldtilextype = tilextype
 			oldtileytype = tileytype
 			TileisSelected = 1
 		pass
+		if(MOVEBUTTON == 1):
+			
+			
+			if(mouse_start == 0):
+				mouse_startingposition = Vector2(get_local_mouse_pos().x, get_local_mouse_pos().y)
+				CameraPosOld = CameraPos
+				pass
+			
+			mouse_start = 1
+			
+			mouse_finalposition = Vector2(get_local_mouse_pos().x, get_local_mouse_pos().y) - Vector2(mouse_startingposition)
+			
+			if (Camera_movement_Timer == 1):
+				CameraPos = CameraPosOld + (mouse_finalposition/1.5)
+				pass
+			
+			Camera_movement_Timer = 0
+			
+#			CAMERA2D.set_offset(CameraPos)
+			
+#			print("MOVING")
+			
+			pass
+	elif((Input.is_action_pressed("Left_mouse") == false) && MOVEBUTTON == 1):
+		mouse_start = 0
+#		print("MOUSESTART = 0")
+		
 	if (Input.is_action_pressed("Right_mouse") && buttonhover == 0):
 		SelMap.set_cell(oldtilextype, oldtileytype, -1)
 		TileisSelected = 0
@@ -586,5 +620,20 @@ func _on_Load1_pressed():
 	pass # replace with function body
 
 
+func _on_Move_pressed():
+	
+	if (MOVEBUTTON == 0):
+		MOVEBUTTON = 1
+		SelMap.set_cell(oldtilextype, oldtileytype, -1)
+	elif (MOVEBUTTON == 1):
+		MOVEBUTTON = 0
+		SelMap.set_cell(oldtilextype, oldtileytype, -1)
+	
+	
+	
+	pass # replace with function body
 
 
+func _on_Camera_movement_Timer_timeout():
+	Camera_movement_Timer = 1
+	pass # replace with function body
