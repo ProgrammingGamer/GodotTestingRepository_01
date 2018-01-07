@@ -15,9 +15,10 @@ onready var CAMERA2D = get_node("/root/Node2D/Camera2D")
 
 
 const SAVE_PATH = "res://save.json"
+const TILE_NAME_PATH = "res://TILENAMES.json"
 
 var savedict = {}
-
+var tiledict = {}
 
 var clickx #= Vector2()
 var clicky #= Vector2()
@@ -53,19 +54,56 @@ var mouse_finalposition
 var mouse_start
 var Camera_movement_Timer = 0
 var CameraPosOld = CameraPos
-
+var TILENAMEANDID
+var Tile_Name = 0
+var TILENAME 
+var Startup = 0
+var Loadblockfullsize = 255
+var Loadblockfullsizep1 = Loadblockfullsize + 1
 
 #Arrays
 var XSAVEARRAY = []
 var YSAVEARRAY = []
 var IDSAVEARRAY = []
 
+#TIlE NAMES
+
+
 func _ready():
 	
 	set_fixed_process(true)
 	pass
 
+
+func OnStartup():
+	
+	var tile_file = File.new()
+	if tile_file.file_exists(TILE_NAME_PATH):
+		print("Tile file Exists!")
+		return
+	if not tile_file.file_exists(TILE_NAME_PATH):
+		print("No file saved!")
+		return
+	
+	# Open existing file
+	if tile_file.open(TILE_NAME_PATH, File.READ) != 0:
+		print("Error opening file")
+		return
+	
+	# Get the data
+	var tiledict = {}
+	tiledict.parse_json(tile_file.get_line())
+	
+	print (tiledict)
+	
+	Startup = 1
+	
+
 func _fixed_process(delta): #_ready():
+	
+	if(Startup == 0):
+		OnStartup()
+	Startup = 1
 	
 	clickx = get_local_mouse_pos().x
 	clicky = get_local_mouse_pos().y
@@ -162,7 +200,11 @@ func _fixed_process(delta): #_ready():
 	
 	if (debugtools == 1 && DebugTimer == 0):
 		print(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
-		var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)
+		print((SelMap.get_cell(tilextype, tileytype)+1))
+#		TILENAMEANDID = (SelMap.get_cell(tilextype, tileytype)+1)
+#		TILENAME = str(tiledict[1])
+#		print(tiledict[1])
+		var Postcoordinates = str(clickx, ", ", clicky, ": Tile: ", tilextype, ", ", tileytype)#, ", Tile Name: ", (TILENAME))
 		Postcoor.set_text(Postcoordinates)
 		DebugTimer = 1
 		pass
@@ -489,10 +531,10 @@ func _on_Save_pressed():
 	YSAVEARRAY = []
 	IDSAVEARRAY = []
 	
-	while(SaveBlockIteration <= 289):
+	while(SaveBlockIteration <= Loadblockfullsizep1):
 		
 		
-		if(X_Save_Distance <= 8):
+		if(X_Save_Distance <= 7):
 			TILE_ID_SAVE = get_cell(X_Save_Distance, Y_Save_Distance)
 			print(X_Save_Distance, ", ", Y_Save_Distance, ", ", TILE_ID_SAVE)
 			XSAVEARRAY.append([X_Save_Distance])
@@ -500,7 +542,7 @@ func _on_Save_pressed():
 			IDSAVEARRAY.append([TILE_ID_SAVE])
 			X_Save_Distance += 1
 			pass
-		if(X_Save_Distance == 9):
+		if(X_Save_Distance == 8):
 			X_Save_Distance = -8
 			Y_Save_Distance += 1
 		SaveBlockIteration += 1
@@ -562,7 +604,7 @@ func _on_Load_pressed():
 	
 	LoadBlockIteration = 0
 	
-	while(LoadBlockIteration <= 288):
+	while(LoadBlockIteration <= Loadblockfullsize):
 		
 #		Load_X = savedict.Save_X[LoadBlockIteration]
 #		Load_Y = savedict.Save_Y[LoadBlockIteration]
@@ -603,14 +645,14 @@ func _on_Load1_pressed():
 	Y_Save_Distance = -8
 	
 	
-	while(SaveBlockIteration <= 289):
+	while(SaveBlockIteration <= Loadblockfullsizep1):
 		
 		
-		if(X_Save_Distance <= 8):
+		if(X_Save_Distance <= 7):
 			set_cell(X_Save_Distance, Y_Save_Distance, -1)
 			X_Save_Distance += 1
 			pass
-		if(X_Save_Distance == 9):
+		if(X_Save_Distance == 8):
 			X_Save_Distance = -8
 			Y_Save_Distance += 1
 		SaveBlockIteration += 1
