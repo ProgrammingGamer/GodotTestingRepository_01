@@ -7,6 +7,7 @@ extends CanvasItem
 onready var Precoor = get_node("/root/Node2D/Camera2D/CanvasLayer/Pre-coordinates")
 onready var Postcoor = get_node("/root/Node2D/Camera2D/CanvasLayer/Post-coordinates")
 onready var TILESIZENODE = get_node("/root/Node2D/Camera2D/CanvasLayer/TILESIZE")
+onready var TILESIZENODE2 = get_node("/root/Node2D/Camera2D/CanvasLayer/TILESIZE2")
 onready var SelMap = get_node("VISIBLE SELECTION")
 onready var KEYTIMERNODE = get_node("/root/Node2D/KeyTimer")
 onready var DISPLAYMap = get_node("/root/Node2D/Selection map")
@@ -209,11 +210,13 @@ func _fixed_process(delta): #_ready():
 		var Precoordinates = str("To TILE: ", tilextype, ", ", tileytype)
 		Precoor.set_text(Precoordinates)
 		TILESIZENODE.set_text(str("Loadblock Size: ", Loadblockfullsize, ", Loadblock Full-Size: ", Loadblockfullsizep1))
+		TILESIZENODE2.set_text(str("Negative Size: ", Loadblocknegativedistance, ", Positive Size: ", Loadblockpositivedistance))
 		pass
 	elif(debugtools == 0):
 		var Precoordinates = str(" ")
 		Precoor.set_text(Precoordinates)
 		TILESIZENODE.set_text(" ")
+		TILESIZENODE2.set_text(" ")
 		pass
 	
 	tilextype = int(tilextype)
