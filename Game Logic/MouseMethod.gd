@@ -533,6 +533,15 @@ func _on_Reset_mouse_exit():
 	buttonhover = 0
 	pass # replace with function body
 
+func _on_Move_mouse_enter():
+	buttonhover = 1
+	pass # replace with function body
+
+
+func _on_Move_mouse_exit():
+	buttonhover = 0
+	pass # replace with function body
+
 
 
 func _on_KeyTimer_timeout():
@@ -710,3 +719,4 @@ func _on_Move_pressed():
 func _on_Camera_movement_Timer_timeout():
 	Camera_movement_Timer = 1
 	pass # replace with function body
+

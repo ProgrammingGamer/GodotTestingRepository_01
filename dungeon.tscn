@@ -394,6 +394,10 @@ autostart = true
 
 [connection signal="pressed" from="Camera2D/CanvasLayer/controls/Reset" to="Selection map" method="_on_Load1_pressed"]
 
+[connection signal="mouse_enter" from="Camera2D/CanvasLayer/controls/Move" to="Selection map" method="_on_Move_mouse_enter"]
+
+[connection signal="mouse_exit" from="Camera2D/CanvasLayer/controls/Move" to="Selection map" method="_on_Move_mouse_exit"]
+
 [connection signal="pressed" from="Camera2D/CanvasLayer/controls/Move" to="Selection map" method="_on_Move_pressed"]
 
 [connection signal="timeout" from="KeyTimer" to="Selection map" method="_on_KeyTimer_timeout"]
