@@ -58,8 +58,15 @@ var TILENAMEANDID
 var Tile_Name = 0
 var TILENAME 
 var Startup = 0
+
+
+#Level Save Size
 var Loadblockfullsize = 255
 var Loadblockfullsizep1 = Loadblockfullsize + 1
+var Loadblocknegativedistance = -8
+var Loadblockpositivedistance = 8
+var Loadblocknegativedistanceeq
+var Loadblocksquare
 
 #Arrays
 var XSAVEARRAY = []
@@ -76,6 +83,22 @@ func _ready():
 
 
 func OnStartup():
+	
+	if(Loadblocknegativedistance < 0):
+		
+		Loadblocknegativedistanceeq = -(Loadblocknegativedistance)
+		
+		pass
+	
+	Loadblocksquare = Loadblockpositivedistance + Loadblocknegativedistanceeq
+	
+	Loadblockfullsize = (Loadblocksquare * Loadblocksquare) - 1
+	
+	Loadblockfullsizep1 = Loadblockfullsize + 1
+	
+	print("Loadblock Size: ", Loadblockfullsize, ", Loadblock Full-Size: ", Loadblockfullsizep1)
+	
+	
 	
 	var tile_file = File.new()
 	if tile_file.file_exists(TILE_NAME_PATH):
@@ -524,8 +547,8 @@ func _on_Save_pressed():
 #	Save_X = oldtilextype 
 #	Save_Y = oldtileytype 
 	
-	X_Save_Distance = X_Save_Distance - 8
-	Y_Save_Distance = Y_Save_Distance - 8
+	X_Save_Distance = Loadblocknegativedistance
+	Y_Save_Distance = Loadblocknegativedistance
 	
 	XSAVEARRAY = []
 	YSAVEARRAY = []
@@ -534,7 +557,7 @@ func _on_Save_pressed():
 	while(SaveBlockIteration <= Loadblockfullsizep1):
 		
 		
-		if(X_Save_Distance <= 7):
+		if(X_Save_Distance <= (Loadblockpositivedistance - 1)):
 			TILE_ID_SAVE = get_cell(X_Save_Distance, Y_Save_Distance)
 			print(X_Save_Distance, ", ", Y_Save_Distance, ", ", TILE_ID_SAVE)
 			XSAVEARRAY.append([X_Save_Distance])
@@ -542,8 +565,8 @@ func _on_Save_pressed():
 			IDSAVEARRAY.append([TILE_ID_SAVE])
 			X_Save_Distance += 1
 			pass
-		if(X_Save_Distance == 8):
-			X_Save_Distance = -8
+		if(X_Save_Distance == Loadblockpositivedistance):
+			X_Save_Distance = Loadblocknegativedistance
 			Y_Save_Distance += 1
 		SaveBlockIteration += 1
 		pass
@@ -645,19 +668,19 @@ func _on_Load_pressed():
 func _on_Load1_pressed():
 	
 	SaveBlockIteration = 1
-	X_Save_Distance = -8
-	Y_Save_Distance = -8
+	X_Save_Distance = Loadblocknegativedistance
+	Y_Save_Distance = Loadblocknegativedistance
 	
 	
 	while(SaveBlockIteration <= Loadblockfullsizep1):
 		
 		
-		if(X_Save_Distance <= 7):
+		if(X_Save_Distance <= (Loadblockpositivedistance - 1)):
 			set_cell(X_Save_Distance, Y_Save_Distance, -1)
 			X_Save_Distance += 1
 			pass
-		if(X_Save_Distance == 8):
-			X_Save_Distance = -8
+		if(X_Save_Distance == Loadblockpositivedistance):
+			X_Save_Distance = Loadblocknegativedistance
 			Y_Save_Distance += 1
 		SaveBlockIteration += 1
 		pass
